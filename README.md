@@ -9,14 +9,14 @@ This repository contains my submission to Cowrywise assessment test. The assessm
   
 - **Approach:**
   1. I used Join to connect the Users_customuser, savings_savingsaccount and plans_plan table.
-  2. Since the savings_savingsaccount table did not have an explicit is_regular_savings column, i used the confirmed_amount column to filter for funded savings account.
+  2. Since the savings_savingsaccount table did not have an explicit is_regular_savings column, the 'is_regular_savings' is in the plans_plan table, i was finding it difficult to come up with an accurate result so i used the confirmed_amount column to filter for funded savings account.
   3. I filtered for for investment plans using the is_a_fund column in the plans_plan table.
   4.  I identified and resolved an issue with incorrect counting of savings plans. Initially, each savings transaction was counted as a separate savings plan, leading to inflated values. I resolved this by counting unique plan_id values for savings instead of counting each transaction.
   5.  I calculated the total deposit using sum(confirmed amount) and converted it to naira by dividing the total by 100.
      
 - **Challenge:**
   1. The name column was filled with null, this was resolved by using the CONCAT function to combine the first_name and last_name without modifying the original table.
-  2. The savings_savingsaccount table lacked an is_regular_savings column, which made it difficult to directly identify savings plans. I used the presence of a positive confirmed_amount value to filter for valid savings plans.
+  2. it took more time trying to get a correct query without using the 'is_regular_savings' which made it difficult to directly identify savings plans. I used the presence of a positive confirmed_amount value to filter for valid savings plans.
   3. The initial query counted each transaction as a separate savings plan, leading to highly inflated values (e.g., a customer having 8,964 savings plans). I corrected this by counting unique plan_id values, accurately representing the number of savings and investment plans.
 
 
