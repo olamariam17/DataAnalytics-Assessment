@@ -1,7 +1,7 @@
 # DataAnalytics-Assessment
 
 ## Introduction
-This repository contains my submission to Cowrywise assessment tes. The assessment test my approach to solving business problems and also my ability to write complex SQL queries to solve real world business problem.
+This repository contains my submission to Cowrywise assessment test. The assessment tests my approach to solving business problems and also my ability to write complex SQL queries to solve real world business problem.
 
 ## Questions and Solutions
 ### Question 1: High value custmers with multiple approach.
@@ -36,7 +36,36 @@ This repository contains my submission to Cowrywise assessment tes. The assessme
 
 
 ### Question 3: Account Inactivity Alert
-- **Problem:** The goal was to identify savings and investment plans that had been inactive for over a year
+- **Problem:** The goal was to identify savings and investment plans that had been inactive for over a year.
 -  **Approach:**
+  1. I classified each plan as either investment or savings using a CASE statement, determined by the value of is_a_fund column in the plans_plan table.
+  2. I calculated the most recent transaction date for each plan using the MAX function on the transaction_date column in the savings_savingsaccount table.
+  3. I computed the number of days since the last transaction using the DATEIFF function.
+  4. Lastly, i filtered the results to include only plans with more that 365 days of inactivity.
 -  **Challenges:**
+  1. Initially, the query i wrote failed to capture the most recent transaction for each plan, leading to incorrect inactivity calculatons. I corrected this using a subquery to identify the maximum transaction date for each plan.
+  2. It took more time for me to understand the correct condition for distinguishing between savings and investment plans.
+  3. The query was optimised using a JOIN with the subquery.
+
+
+### Question 4: Customer Lifetime Value (CLV) Estimation
+- **Problem:** The objective was to estimate the Customer Lifetime Value (CLV) for each customer based on their transaction history.
+-  **Approach:**
+  1. Listed each customer using the users_customuser table, combining their first_name and last_name for clear identification.
+  2. Calculated the customer's tenure in months using the DATEDIFF function, divided by 30 (approximate month length).
+  3. Counted the total number of transactions for each customer from the savings_savingsaccount table.
+  4. I calculated estimated clv using the formular below
+    \[
+    \text{Estimated CLV} = \frac{\text{Total transactions}}{\text{Customer tenure (in months)}} \times 13 \times (\text{average transaction value} \times 0.001)
+\]
+
+- **Total Transactions:** The total number of transactions made by the customer.
+- **Customer Tenure:** The number of months since the customer joined.
+- **Average Transaction Value:** The average value of a single transaction in Kobo (converted to Naira by multiplying by 0.001).
+This provided an annualized CLV, adjusted for transaction value in kobo.
+ 5. I arranged the results in descending order of estimated clv for easy identification of high value customers.
+-  **Challenges:**
+1. The initial approach used an inaccurate method for calculating tenure, which lead to incorrect clv values. this was corrected by dividing the total days by 30 for an approximate monthly value.
+2. clv was initially calculated in kobo, leading to extremly high values, i resolved this by converting the transaction value to naira by dividing the value by 100.
+3. The first query i used was too complex, so i streamlined it for clarity still maintaining accuracy.
   
