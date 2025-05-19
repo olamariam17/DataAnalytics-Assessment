@@ -61,7 +61,8 @@ This repository contains my submission to Cowrywise assessment test. The assessm
   2. I calculated the customer's tenure in months using the DATEDIFF function, divided by 30 (approximate month length).
   3. I counted the total number of transactions for each customer from the savings_savingsaccount table.
   4. I calculated estimated CLV using the formular below
-      **Estimated CLV = (Total transactions / Customer tenure (in months)) × 12 × (Average transaction value × 0.001)**
+     
+**Estimated CLV = (Total transactions / Customer tenure (in months)) × 12 × (Average transaction value × 0.001)**
 
 - **Total transactions:** The total number of transactions made by the customer.
 - **Customer tenure:** The number of months since the customer joined.
